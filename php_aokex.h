@@ -38,4 +38,9 @@ ZEND_END_MODULE_GLOBALS(aokex)
 #endif /* HAVE_AOKEX */
 
 #define phpext_aokex_ptr aokex_module_ptr
+
+void *aokex_malloc(size_t);
+void *aokex_realloc(void *, size_t, size_t);
+void aokex_free(void *, size_t);
+
 #endif /* PHP_AOKEX_H */

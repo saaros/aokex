@@ -1,5 +1,5 @@
 /*
- * $Id: php_aokex.c,v 1.1 2005/01/05 14:06:02 pickett Exp $
+ * $Id: php_aokex.c,v 1.2 2005/01/05 14:19:16 pickett Exp $
  *
  * +----------------------------------------------------------------------+
  * | PHP Version 4                                                        |
@@ -72,6 +72,24 @@ PHP_MINIT_FUNCTION(aokex)
 PHP_RINIT_FUNCTION(aokex)
 {
   return SUCCESS;
+}
+
+void *
+aokex_malloc(size_t n)
+{
+  return emalloc(n);
+}
+
+void *
+aokex_realloc(void *p, size_t on, size_t nn)
+{
+  return erealloc(p, nn);
+}
+
+void
+aokex_free(void *p, size_t n)
+{
+  efree(p);
 }
 
 PHP_FUNCTION(aokex_login_key)

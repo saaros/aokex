@@ -1,5 +1,5 @@
 /*
- * $Id: aokex.h,v 1.1 2005/01/05 14:06:02 pickett Exp $
+ * $Id: aokex.h,v 1.2 2005/01/05 14:19:16 pickett Exp $
  *
  * AOChat -- library for talking with the Anarchy Online chat servers
  * Copyright (C) 2002-2005  Oskari Saarenmaa <auno@auno.org>.
@@ -36,6 +36,8 @@
 
 #ifndef _AOKEX_H
 #define _AOKEX_H
+
+#include "php_aokex.h"
 
 typedef unsigned int AoUInt32;
 typedef struct aokex_math_s aokex_math_t;

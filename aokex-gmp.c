@@ -1,5 +1,5 @@
 /*
- * $Id: aokex-gmp.c,v 1.1 2005/01/05 14:06:02 pickett Exp $
+ * $Id: aokex-gmp.c,v 1.2 2005/01/05 14:19:16 pickett Exp $
  *
  * AOChat -- library for talking with the Anarchy Online chat servers
  * Copyright (C) 2002-2005  Oskari Saarenmaa <auno@auno.org>.
@@ -50,7 +50,8 @@ aokex_math_t *
 aokex_math_init()
 {
   struct timeval tv;
-  aokex_math_t *ctx = (aokex_math_t *)emalloc(sizeof(aokex_math_t));
+  aokex_math_t *ctx = (aokex_math_t *)aokex_malloc(sizeof(aokex_math_t));
+  mp_set_memory_functions(aokex_malloc, aokex_realloc, aokex_free);
   gmp_randinit_default(ctx->rstate);
   gettimeofday(&tv, NULL);
   gmp_randseed_ui(ctx->rstate, tv.tv_sec^tv.tv_usec);
@@ -75,7 +76,7 @@ aokex_math_uninit(aokex_math_t *ctx)
   mpz_clear(ctx->dh_k);
   mpz_clear(ctx->dh_g);
   mpz_clear(ctx->dh_p);
-  efree(ctx);
+  aokex_free(ctx, sizeof(aokex_math_t));
 }
 
 AoUInt32

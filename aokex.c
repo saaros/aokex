@@ -1,5 +1,5 @@
 /*
- * $Id: aokex.c,v 1.1 2005/01/05 14:06:02 pickett Exp $
+ * $Id: aokex.c,v 1.2 2005/01/05 14:19:16 pickett Exp $
  *
  * AOChat -- library for talking with the Anarchy Online chat servers
  * Copyright (C) 2002-2005  Oskari Saarenmaa <auno@auno.org>.
@@ -105,7 +105,7 @@ aokex_login_key(char *serverseed,
   plen = 8+4+clen;
   plen = ((plen+7)/8)*8; /* round up to 8 */
 
-  plaintext = (char *)emalloc(plen+1); /* make room for a null */
+  plaintext = (char *)aokex_malloc(plen+1); /* make room for a null */
 
   /* insert cookie */
   memcpy(plaintext+0, &cookie[0], 4);
@@ -126,16 +126,16 @@ aokex_login_key(char *serverseed,
   ciphertext = aokex_cipher(dh_str_k, plaintext, plen);
 
   /* the return value is dh_str_x '-' ciphertext */
-  ret = (char *)emalloc(strlen(dh_str_x)+1+strlen(ciphertext)+1);
+  ret = (char *)aokex_malloc(strlen(dh_str_x)+1+strlen(ciphertext)+1);
   strcpy(ret, dh_str_x);
   strcat(ret, "-");
   strcat(ret, ciphertext);
 
   /* free any memory we allocated */
-  efree(dh_str_x);
-  efree(dh_str_k);
-  efree(plaintext);
-  efree(ciphertext);
+  aokex_free(dh_str_x, 0);
+  aokex_free(dh_str_k, 0);
+  aokex_free(plaintext, 0);
+  aokex_free(ciphertext, 0);
 
   return ret;
 }
@@ -146,7 +146,7 @@ aokex_cipher(char *key,
              int len)
 {
   AoUInt32 i, cycle[4], akey[4];
-  char *text=(char *)emalloc(len*2+1), *p=text;
+  char *text=(char *)aokex_malloc(len*2+1), *p=text;
 
   /* Zero the cycle */
   memset(cycle, 0, sizeof cycle);
