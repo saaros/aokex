@@ -1,0 +1,20 @@
+Anarchy Online Key Exchange PHP module.
+
+The purpose of this module is to perform the Diffie-Hellman key-exchange and
+login info encryption using the TEA cipher.  Those are the algorithms used
+by Anarchy Online chat servers.
+
+It used to be possible to implement all this in PHP, using either BCmath or
+GMP extensions as provided by PHP, but unfortunately PHP 5.0.2 introduced a
+change in double-to-long conversion that broke the TEA implementation.
+
+The module should be quite straightforward, it only has one function,
+aokex_login_key($serverseed, $username, $password) which should be called in
+place of AOChat.php's AOChat::generate_login_key(..) function.
+
+There are two DH implementation at the moment, one using GMP and one using
+OpenSSL, both of them should work, and provide an example of how to
+implement DH with other libraries, or perhaps purely in C for maximum
+portability.
+
+// Oskari Saarenmaa / 'Auno' / 2005-Jan-07
