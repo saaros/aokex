@@ -1,5 +1,5 @@
 /*
- * $Id: aokex.c,v 1.2 2005/01/05 14:19:16 pickett Exp $
+ * $Id: aokex.c,v 1.3 2005/01/07 02:42:08 pickett Exp $
  *
  * AOChat -- library for talking with the Anarchy Online chat servers
  * Copyright (C) 2002-2005  Oskari Saarenmaa <auno@auno.org>.
@@ -153,11 +153,19 @@ aokex_cipher(char *key,
 
   /* Convert the hexadecimal key to binary */
   sscanf(key, "%08x%08x%08x%08x", &akey[0], &akey[1], &akey[2], &akey[3]);
+  akey[0] = htonl(akey[0]);
+  akey[1] = htonl(akey[1]);
+  akey[2] = htonl(akey[2]);
+  akey[3] = htonl(akey[3]);
 
   for(i=0; i<len/4;)
   {
-    cycle[0] = (*(AoUInt32*)(str+4*i++)) ^ (cycle[2]);
-    cycle[1] = (*(AoUInt32*)(str+4*i++)) ^ (cycle[3]);
+    cycle[0] = ((str[4*i+3] << 24) | (str[4*i+2] << 16)  |
+                (str[4*i+1] <<  8) | (str[4*i+0] <<  0)) ^ cycle[2];
+    i++;
+    cycle[1] = ((str[4*i+3] << 24) | (str[4*i+2] << 16)  |
+                (str[4*i+1] <<  8) | (str[4*i+0] <<  0)) ^ cycle[3];
+    i++;
     aokex_tea_encipher(cycle, akey);
     sprintf(p, "%08x%08x", htonl(cycle[2]), htonl(cycle[3]));
     p += 16;
