@@ -1,0 +1,6 @@
+LTLIBRARY_NAME    = libaokex.la
+LTLIBRARY_SOURCES = aokex.c aokex-gmp.c php_aokex.c
+LTLIBRARY_SHARED_NAME   = aokex.la
+LTLIBRARY_SHARED_LIBADD = $(AOKEX_SHARED_LIBADD)
+
+include $(top_srcdir)/build/dynlib.mk
