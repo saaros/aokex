@@ -1,0 +1,18 @@
+To build aokex.so:
+
+  % phpize
+  % ./configure --with-aokex=shared
+  % make
+  % make install
+
+Usage:
+
+  dl("aokex.so");
+  $key = aokex_login_key($serverseed, $username, $password);
+
+Other:
+
+  To use OpenSSL DH backend instead of GMP one, edit Makefile.in and replace
+  aokex-gmp.c with aokex-openssl.c prior to running phpize.
+
+// Oskari Saarenmaa / 'Auno' / 2005-Jan-07
