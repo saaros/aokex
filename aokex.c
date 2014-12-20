@@ -1,35 +1,10 @@
 /*
- * $Id: aokex.c,v 1.3 2005/01/07 02:42:08 pickett Exp $
- *
  * AOChat -- library for talking with the Anarchy Online chat servers
- * Copyright (C) 2002-2005  Oskari Saarenmaa <auno@auno.org>.
- * All rights reserved.
  *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
+ * Copyright (c) 2002-2005, Oskari Saarenmaa <oskari@saarenmaa.fi>
  *
- * This program is distributed in the hope that it will be useful, but
- * WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307
- * USA
- *
- *
- * ***
- *
- * The license does not actually allow this program to be linked against
- * PHP, which uses a different license, but since I own the copyrights
- * to this code, I hereby explicitly allow linking this object to a PHP
- * module called 'aokex' which is also authored by me.
- *
- * Oskari Saarenmaa / auno@auno.org / 2005-Jan-05.
- *
+ * This file is under the 2-clause BSD license.
+ * See the file `LICENSE` for details.
  *
  */
 
